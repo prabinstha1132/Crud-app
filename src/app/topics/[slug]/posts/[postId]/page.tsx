@@ -1,3 +1,5 @@
+import PostList from "@/components/post/post-list"
+
 export default function PostShowPage(){
-   return<div>post a page</div> 
+   return<div></div>
 }
