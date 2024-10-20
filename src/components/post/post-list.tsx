@@ -2,9 +2,9 @@
 import { db } from "@/db"
 import paths from "@/path";
 import { Link } from "@nextui-org/react";
-import type { PostWithData } from '@/db/queries/post'
+import type { PostForListDisplay } from '@/db/queries/post'
 interface PostListProps {
-    fetchData: () => Promise<PostWithData[]>
+    fetchData: () => Promise<PostForListDisplay[]>
 }
 export default async function PostList({ fetchData }: PostListProps) {
     const posts = await fetchData();
@@ -16,9 +16,9 @@ export default async function PostList({ fetchData }: PostListProps) {
         return (
             <div key={post.id} className="border rounded p-2 ">
                 <Link href={paths.PostShow(topicslug, post.id)}>
-                    <h3 className="text-lg font-bold">{post.title}</h3>
+                    <h3 className="text-lg font-bold p-3 text-cyan-700">{post.title}</h3>
                     <div className="flex flex-row gap-8">
-                        <p className="text-xs text-gray-400">By {post.user.name}</p>
+                        <p className="text-xs text-gray-400"> By {post.user.name}</p>
                         <p className="text-xs text-gray-400">
                             {post._count.comments} comments
                         </p>

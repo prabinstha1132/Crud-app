@@ -1,5 +1,5 @@
 import PostList from "@/components/post/post-list"
 
 export default function PostShowPage(){
-   return<div></div>
+   return<div><h1>we are here in postShowPage</h1></div>
 }

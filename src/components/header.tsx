@@ -10,6 +10,7 @@ import {
 
 } from '@nextui-org/react';
 import HeaderAuth from './header-auth';
+import HeaderAuthGoole from './header-auth-google';
 
 export default function Header() {
     return (
@@ -22,6 +23,9 @@ export default function Header() {
             </NavbarContent>
             <NavbarContent justify='end'>
                 <HeaderAuth />
+            </NavbarContent>
+            <NavbarContent>
+                <HeaderAuthGoole/>
             </NavbarContent>
             <NavbarContent>
 
