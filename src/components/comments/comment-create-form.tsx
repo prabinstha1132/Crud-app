@@ -1,67 +1,56 @@
-"use client";
-
+"use client"
+import { useState, useEffect, useRef } from "react";
 import { useFormState } from "react-dom";
-import { useEffect, useRef, useState } from "react";
+import * as actions from '@/actions'
+import FormButton from "../common/form-button";
 import { Textarea, Button } from "@nextui-org/react";
-import FormButton from "@/components/common/form-button";
-import * as actions from "@/actions";
 
 interface CommentCreateFormProps {
-  postId: string;
-  parentId?: string;
-  startOpen?: boolean;
+  postId: string,
+  parentId?: string,
+  startOpen?: boolean,
 }
 
 export default function CommentCreateForm({
   postId,
   parentId,
-  startOpen,
-}: CommentCreateFormProps) {
-  const [open, setOpen] = useState(startOpen);
-  const ref = useRef<HTMLFormElement | null>(null);
-  const [formState, action] = useFormState(
-    actions.createComment.bind(null, { postId, parentId }),
-    { errors: {} }
-  );
+  startOpen }: CommentCreateFormProps) {
+  const [open, setOpen] = useState(startOpen); //this means initially form is open
+  const ref = useRef<HTMLFormElement | null>(null); //this one will clear the form after submission
+  const [formState, action] = useFormState(actions.createComment.bind(null, { postId, parentId }), { errors: {} });
 
   useEffect(() => {
-    if (formState.success) {
+    if (formState.success) {  //it means if form submission is success than reset the form
       ref.current?.reset();
-
-      if (!startOpen) {
-        setOpen(false);
-      }
     }
-  }, [formState, startOpen]);
+    if (!startOpen) {
+      setOpen(false)
+    }
 
+  }, [formState, startOpen])
   const form = (
     <form action={action} ref={ref}>
-      <div className="space-y-2 px-1">
+      <div className="space-y-2 py-2">
         <Textarea
           name="content"
-          label="Reply"
-          placeholder="Enter your comment"
+          placeholder="reply your comment"
           isInvalid={!!formState.errors.content}
-          errorMessage={formState.errors.content?.join(", ")}
+          errorMessage={formState.errors.content?.join(', ')}
         />
-
-        {formState.errors._form ? (
-          <div className="p-2 bg-red-200 border rounded border-red-400">
-            {formState.errors._form?.join(", ")}
-          </div>
-        ) : null}
-
-        <FormButton>Create Comment</FormButton>
+        {formState.errors._form ? (<div className="p-2 bg-red-100 border rounded border-red-100">
+          {formState.errors._form}
+        </div>) : null}
+        <FormButton>create comment</FormButton>
       </div>
     </form>
   );
-
   return (
-    <div>
-      <Button size="sm" variant="light" onClick={() => setOpen(!open)}>
+    <div className="">
+      <Button size="sm" variant="solid" onClick={() => setOpen(!open)}>
         Reply
       </Button>
       {open && form}
     </div>
-  );
+  )
 }
+

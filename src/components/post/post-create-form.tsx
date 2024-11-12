@@ -32,7 +32,7 @@ const[formState, action]= useFormState(createPost.bind(null,slug), {errors:{}})
                             name= "title"
                         />
                             <Textarea
-                            isInvalid={!!formState.errors.title}
+                            isInvalid={!!formState.errors.content}
                             errorMessage={formState.errors.content?.join(', ')}
                             label="Content"
                             labelPlacement='outside'

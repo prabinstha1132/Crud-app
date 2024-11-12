@@ -22,7 +22,7 @@ const CreatePostSchema = z.object({
         .string()
         .min(7)
 })
-interface CreatePostSchema {
+interface CreatePosts {
     errors: {
         title?: string[],// array of string
         content?: string[],
@@ -31,7 +31,7 @@ interface CreatePostSchema {
 }
 
 
-export async function createPost(slug: string, formState: CreatePostSchema, FormData: FormData): Promise<CreatePostSchema> {
+export async function createPost(slug: string, formState: CreatePosts, FormData: FormData): Promise<CreatePosts> {
     const result = CreatePostSchema.safeParse({
         title: FormData.get('title'),
         content: FormData.get('content')

@@ -8,7 +8,7 @@ export type PostForListDisplay = (
         _count: { comments: number }
     }
 )
-export function fetchPostByTopicSlug(slug: string): Promise<PostWithData[]> {
+export function fetchPostByTopicSlug(slug: string): Promise<PostForListDisplay[]> {
     return db.post.findMany({
         where: { topic: { slug: slug } },
         include: {
