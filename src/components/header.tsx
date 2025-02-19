@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import {
     Navbar,
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Input,
     Button,
 
 
 } from '@nextui-org/react';
 import HeaderAuth from './header-auth';
+import SearchInput from './search-input';
 import HeaderAuthGoole from './header-auth-google';
 
 export default function Header() {
@@ -19,7 +20,7 @@ export default function Header() {
                 <Link href='/' className='font-bold font-sans'>Discuss</Link>
             </NavbarBrand>
             <NavbarContent justify='center'>
-                <NavbarItem><Input /></NavbarItem>
+                <NavbarItem><Suspense><SearchInput /></Suspense></NavbarItem>
             </NavbarContent>
             <NavbarContent justify='end'>
                 <HeaderAuth />

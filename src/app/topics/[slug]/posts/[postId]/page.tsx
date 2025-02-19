@@ -1,6 +1,7 @@
 import PostList from "@/components/post/post-list"
 import PostShow from "@/components/post/post-show";
 import Link from "next/link";
+import { Suspense } from "react";
 import paths from "@/path";
 import CommentCreateForm from "@/components/comments/comment-create-form";
 import CommentList from "@/components/comments/comment-list";
@@ -20,7 +21,7 @@ export default function PostShowPage(props: PostShowProps) {
      {'<'} Back to {slug}
       </Link>
 
-      <PostShow postId={postId} />
+      <Suspense fallback={<div>Loading...</div>}><PostShow postId={postId} /></Suspense>
       <CommentCreateForm postId={postId} startOpen/>
       <CommentList fetchData={()=>fetchCommentByPost(postId)}/>
 

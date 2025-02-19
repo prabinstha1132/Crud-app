@@ -10,7 +10,7 @@ interface CommentShowProps {
 
 // TODO: Get a list of comments
 export default function CommentShow({ commentId,comments }: CommentShowProps) {
-  const comment = comments.find((c) => c.id === commentId);
+  const comment = comments.find((c) => c.id === commentId);//Purpose: Finds the comment whose id matches commentId
 
   if (!comment) {
     return null;
